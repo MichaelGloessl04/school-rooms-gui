@@ -1,17 +1,16 @@
 <template>
     <div class="list-box" @click="collapsed = !collapsed">
-        <h2>Reservations</h2>
+        <h2>Rooms</h2>
         <table v-if="!collapsed">
             <thead>
                 <tr>
-                    <th>Room</th>
-                    <th>User</th>
-                    <th>Start</th>
-                    <th>End</th>
+                    <th>Name</th>
+                    <th>occupied</th>
+                    <th>by</th>
                 </tr>
             </thead>
             <tbody>
-                <ReservationListElement v-for="reservation in props.reservations" :key="reservation.id" :reservation="reservation" />
+                <RoomListElement v-for="room in props.rooms" :key="room.id" :room="room" />
             </tbody>
         </table>
     </div>
@@ -20,13 +19,13 @@
 
 <script setup lang="ts">
 import { ref, Ref } from 'vue';
-import ReservationListElement from './ReservationListElement.vue';
-import { Reservation } from '../../types/Reservation';
+import RoomListElement from './RoomListElement.vue';
+import { Room } from '../../types/Room';
 
 const collapsed: Ref<Boolean> = ref(true);
 
 const props = defineProps<{
-    reservations: Reservation[];
+    rooms: Room[];
 }>();
 </script>
 
@@ -70,4 +69,4 @@ tr:hover {
     cursor: pointer;
     width: max-content;
 }
-</style>./ReservationListElement.vue
+</style>./RoomListElement.vue
